@@ -8,12 +8,12 @@ $("document").ready(function () {
    // let cityBtn = $("button.button");
    
    //ajax call for current weather
-   function getWeather() {
+   function getWeather(city) {
       $.ajax({
          url: queryURL,
          method: "GET",
          data: {
-         q: "Washington DC",
+         q: city,
          appid: apiKey
          }
       }).then(function (response) {
@@ -55,15 +55,13 @@ $("document").ready(function () {
       e.preventDefault();
       let citySearch = searchInput.val();
       citiesArr = [];
-      let savedCities = JSON.parse(localStorage.getItem("savedCities"))
+      let savedCities = JSON.parse(localStorage.getItem("savedCities")) || [];
       savedCities.push(citySearch);
       citiesArr.push(savedCities);
       localStorage.setItem("savedCities", JSON.stringify(savedCities));
       
-      $.each(savedCities, function(idx){
-         
+      $.each(savedCities, function(idx) {
          cityBtn.text(citySearch);
-         
          $("#cities-list").append(cityBtn[idx]);
       });
       
