@@ -48,43 +48,10 @@ $("document").ready(function () {
          // $(`span#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
          // }
       });
-   }
-   //all of the above DOM elements created with this function:
+   };
+
    getWeather();
-   //On click event to fire off and get weather info of the city whose button was clicked
-   // cityBtn.on("click", function (e) {
-   //    e.preventDefault();
-   //    queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${$(this).text()},us&units=imperial&APPID=${apiKey}`;
-   //    $.ajax({
-   //       url: queryURL,
-   //       method: "GET"
-   //    }).then(function (response) {
-   //       $("h3#cityname").text(`${response.city.name}`);
-   //       $("img#icon").attr("src", `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`);
-   //       $("h5#temp").text(`Temperature: ${response.list[0].main.temp}°F`);
-   //       $("h6#date").text(response.list[0].dt_txt)
-   //       $("p#humidity").text(`Humidity: ${response.list[0].main.humidity}%`);
-   //       $("p#windspeed").text(`Wind: ${response.list[0].wind.speed} mph`);
-   //       let cityLat = response.city.coord.lat;
-   //       let cityLon = response.city.coord.lon;
-   //       uvURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${cityLat}&lon=${cityLon}`;
-   //       $.ajax({
-   //       url: uvURL,
-   //       method: "GET",
-   //       }).then(function (response) {
-   //       $("p#uvindex").text(`UV Index: ${response.value}`);
-   //       });
-   //       function fiveDayForecast() {
-   //       for (let i = 1; i < 6; i++) {
-   //          $(`span#${i}`).find($("img.icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
-   //          $(`span#${i}`).find($("h3.date")).text(`${response.list[8 * i - 1].dt_txt}`)
-   //          $(`span#${i}`).find($("p.temp")).text(`Temp: ${response.list[8 * i - 1].main.temp}°F`);
-   //          $(`span#${i}`).find($("p.humidity")).text(`Humidity: ${response.list[8 * i - 1].main.humidity}%`);
-   //       }
-   //       }
-   //       fiveDayForecast();
-   //    });
-   // });
+ 
    submitBtn.on("click", function (e) {
       e.preventDefault();
       let citySearch = searchInput.val();
@@ -128,4 +95,14 @@ $("document").ready(function () {
          };
       });
    });
+
+
+   cityBtn.on("click", "document.hit-api", function (e) {
+      e.preventDefault();
+      
+      fiveDayForecast();
+   });
 });
+
+
+
