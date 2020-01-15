@@ -3,6 +3,8 @@ $("document").ready(function () {
    let queryURL = `http://api.openweathermap.org/data/2.5/forecast?id=4138106&units=imperial&APPID=${apiKey}`;
    let searchInput = $("#city-search");
    let submitBtn = $("#submit");
+   var cityBtn = $("<button>");
+
    // let cityBtn = $("button.button");
    
    //ajax call for current weather
@@ -15,18 +17,15 @@ $("document").ready(function () {
          appid: apiKey
          }
       }).then(function (response) {
-         //Setting text/attr to the AJAX response specific object/array index
          $("#city-name").text(`${response.city.name}`);
          $("#weather-icon").attr("src", `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`);
          $("#temp").text(`Temperature: ${response.list[0].main.temp}°F`);
          $("#date").text(response.list[0].dt_txt.split(" ")[0]);
          $("#humidity").text(`Humidity: ${response.list[0].main.humidity}%`);
          $("#windspeed").text(`Wind: ${response.list[0].wind.speed} mph`);
-         //using the coordinates of the response city to determine URL for UV index
          let cityLat = response.city.coord.lat;
          let cityLon = response.city.coord.lon;
          let uvURL = `http://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${cityLat}&lon=${cityLon}`;
-         //nested AJAX to use first response to get coordinates of that specific city
          $.ajax({
             url: uvURL,
             method: "GET",
@@ -62,7 +61,6 @@ $("document").ready(function () {
       localStorage.setItem("savedCities", JSON.stringify(savedCities));
       
       $.each(savedCities, function(idx, city){
-         var cityBtn = $("<button>");
          cityBtn.addClass("hit-api");
          cityBtn.text(citySearch);
          $("#cities-list").append(cityBtn[idx]);
@@ -99,9 +97,11 @@ $("document").ready(function () {
 
    cityBtn.on("click", "document.hit-api", function (e) {
       e.preventDefault();
-      
-      fiveDayForecast();
+      var cityName = $(this).text();
+      getWeather(cityName);
+      // fiveDayForecast();
    });
+
 });
 
 
