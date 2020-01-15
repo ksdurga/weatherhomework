@@ -50,7 +50,7 @@ $("document").ready(function () {
       });
    }
    //all of the above DOM elements created with this function:
-   console.log(getWeather());
+   getWeather();
    //On click event to fire off and get weather info of the city whose button was clicked
    // cityBtn.on("click", function (e) {
    //    e.preventDefault();
@@ -88,17 +88,19 @@ $("document").ready(function () {
    submitBtn.on("click", function (e) {
       e.preventDefault();
       let citySearch = searchInput.val();
+      citiesArr = [];
       let savedCities = JSON.parse(localStorage.getItem("savedCities"))
-      if (!savedCities) {
-         savedCities = [];
-      }
       savedCities.push(citySearch);
+      citiesArr.push(savedCities);
       localStorage.setItem("savedCities", JSON.stringify(savedCities));
-      for (let i = 0; i < savedCities.length; i++) {
-         let cityBtn = $("<button>");
-         cityBtn.text(savedCities[i]);
-         $("#cities-list").append(cityBtn);
-      };
+      
+      $.each(savedCities, function(idx, city){
+         var cityBtn = $("<button>");
+         cityBtn.addClass("hit-api");
+         cityBtn.text(citySearch);
+         $("#cities-list").append(cityBtn[idx]);
+      });
+      
       
       queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${citySearch},us&units=imperial&APPID=${apiKey}`;
       $.ajax({
@@ -117,7 +119,7 @@ $("document").ready(function () {
             url: uvURL,
             method: "GET"
          }).then(function (response) {
-            $("p#uvindex").text(`UV Index: ${response.value}`);
+            $("#uvindex").text(`UV Index: ${response.value}`);
          });
          for (let i = 1; i < 6; i++) {
             $(`span#${i}`).find($("weather-icon")).attr("src", `http://openweathermap.org/img/wn/${response.list[8 * i - 1].weather[0].icon}@2x.png`);
