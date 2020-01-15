@@ -60,9 +60,10 @@ $("document").ready(function () {
       citiesArr.push(savedCities);
       localStorage.setItem("savedCities", JSON.stringify(savedCities));
       
-      $.each(savedCities, function(idx, city){
-         cityBtn.addClass("hit-api");
+      $.each(savedCities, function(idx){
+         
          cityBtn.text(citySearch);
+         
          $("#cities-list").append(cityBtn[idx]);
       });
       
@@ -95,7 +96,7 @@ $("document").ready(function () {
    });
 
 
-   cityBtn.on("click", "document.hit-api", function (e) {
+   cityBtn.on("click", function (e) {
       e.preventDefault();
       var cityName = $(this).text();
       getWeather(cityName);
