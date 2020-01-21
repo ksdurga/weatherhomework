@@ -24,17 +24,11 @@
             </div>
             <button type="submit" class="btn btn-primary" id="submit">Submit</button>
             <div id="cities-list"></div>
-            <!-- <ul class="list-group" id="cities-list">Previously searched cities:
-               <li class="list-group-item"></li>
-               <li class="list-group-item"></li>
-               <li class="list-group-item"></li>
-               <li class="list-group-item"></li>
-               <li class="list-group-item"></li>
-            </ul> -->
+           
          </form>
          <!-- <div class="row"> -->
          <div class="card col-10" style="width: 18rem;">
-            <div class="card-body">
+            <div class="card-body" id="thecity">
                <!-- main city display -->
                <h5 class="card-title" id="city-name"></h5>
                <h6 class="card-subtitle mb-2 text-muted" id="temp"></h6>
@@ -42,40 +36,51 @@
                <p class="card-text" id="humidity"></p>
                <p class="card-text" id="windspeed"></p>
                <p class="card-text" id="uvindex"></p>
-               <img src="" class="img" id="weather-icon"></img>
+               <div class="icon"></div>
+               <img class="img" id="weather-icon"></img>
             </div>
          </div>
          <!-- </div> -->
-         <div class="row">
+         <div class="row hide" id="fiveday">
             <div class="card col-2">
                <div class="card-body" id="day1">
-                  
+                  <h5 id="date1"></h5>
+                  <p id="max-temp1"></p>
+                  <p id="min-temp1"></p>
                </div>
             </div>
             <div class="card col-2">
                <div class="card-body" id="day2">
-                  
+                  <h5 id="date2"></h5>
+                  <p id="max-temp2"></p>
+                  <p id="min-temp2"></p>
                </div>
             </div>
             <div class="card col-2">
                <div class="card-body" id="day3">
-                  
+                  <h5 id="date3"></h5>
+                  <p id="max-temp3"></p>
+                  <p id="min-temp3"></p>   
                </div>
             </div>
             <div class="card col-2">
                <div class="card-body" id="day4">
-                  
+                  <h5 id="date4"></h5>
+                  <p id="max-temp4"></p>
+                  <p id="min-temp4"></p>
                </div>
             </div>
             <div class="card col-2">
                <div class="card-body" id="day5">
-                  
+                  <h5 id="date5"></h5>
+                  <p id="max-temp5"></p>
+                  <p id="min-temp5"></p>
                </div>
             </div>
          </div>
       </div>
    </div>
-   <!-- <script src="assets/js/script.js"></script> -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
    <script src="assets/js/script.js"></script>
 </body>
 </html>
